@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Models\" />
+    <Folder Include="ManyToMany\" />
+    <Folder Include="OneToMany\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

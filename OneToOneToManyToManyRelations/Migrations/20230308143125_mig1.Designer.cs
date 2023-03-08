@@ -11,7 +11,7 @@ using OneToOneToManyToManyRelations.DB;
 namespace OneToOneToManyToManyRelations.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230308123928_mig1")]
+    [Migration("20230308143125_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -24,33 +24,13 @@ namespace OneToOneToManyToManyRelations.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.Department", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("DepartmantName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("EmployeeName")
                         .IsRequired()
@@ -61,7 +41,7 @@ namespace OneToOneToManyToManyRelations.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeAddress", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.EmployeeAddress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,18 +64,18 @@ namespace OneToOneToManyToManyRelations.Migrations
                     b.ToTable("EmployeeAddresses");
                 });
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeAddress", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.EmployeeAddress", b =>
                 {
-                    b.HasOne("OneToOneToManyToManyRelations.Models.Employee", "Employee")
+                    b.HasOne("OneToOneToManyToManyRelations.OneToOne.Employee", "Employee")
                         .WithOne("EmployeeAddress")
-                        .HasForeignKey("OneToOneToManyToManyRelations.Models.EmployeeAddress", "EmployeeId")
+                        .HasForeignKey("OneToOneToManyToManyRelations.OneToOne.EmployeeAddress", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.Employee", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.Employee", b =>
                 {
                     b.Navigation("EmployeeAddress")
                         .IsRequired();

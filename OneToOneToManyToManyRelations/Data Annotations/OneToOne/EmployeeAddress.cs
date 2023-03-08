@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OneToOneToManyToManyRelations.Models
+namespace OneToOneToManyToManyRelations.Data_Annotations.OneToOne
 {
-    public class EmployeeAddressDA
+    public class EmployeeAddress
     {
-        [Key, ForeignKey(nameof(EmployeeDA))]
+        [Key,ForeignKey(nameof(Employee))]
         public int Id { get; set; }
         public string Address { get; set; }
-        public EmployeeDA EmployeeDA { get; set; }
+        public Employee Employee { get; set; }
     }
 }

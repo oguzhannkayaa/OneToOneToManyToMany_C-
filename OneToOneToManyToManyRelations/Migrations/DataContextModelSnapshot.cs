@@ -21,24 +21,7 @@ namespace OneToOneToManyToManyRelations.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("DepartmantName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.Employee", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +38,7 @@ namespace OneToOneToManyToManyRelations.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeAddress", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.EmployeeAddress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,76 +61,18 @@ namespace OneToOneToManyToManyRelations.Migrations
                     b.ToTable("EmployeeAddresses");
                 });
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeAddressDA", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.EmployeeAddress", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmployeeAddressesDA");
-                });
-
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeDA", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("EmployeeAddressId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("EmployeeName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeAddressId");
-
-                    b.ToTable("EmployeesDA");
-                });
-
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeAddress", b =>
-                {
-                    b.HasOne("OneToOneToManyToManyRelations.Models.Employee", "Employee")
+                    b.HasOne("OneToOneToManyToManyRelations.OneToOne.Employee", "Employee")
                         .WithOne("EmployeeAddress")
-                        .HasForeignKey("OneToOneToManyToManyRelations.Models.EmployeeAddress", "EmployeeId")
+                        .HasForeignKey("OneToOneToManyToManyRelations.OneToOne.EmployeeAddress", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeAddressDA", b =>
-                {
-                    b.HasOne("OneToOneToManyToManyRelations.Models.EmployeeDA", "EmployeeDA")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EmployeeDA");
-                });
-
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.EmployeeDA", b =>
-                {
-                    b.HasOne("OneToOneToManyToManyRelations.Models.EmployeeAddress", "EmployeeAddress")
-                        .WithMany()
-                        .HasForeignKey("EmployeeAddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EmployeeAddress");
-                });
-
-            modelBuilder.Entity("OneToOneToManyToManyRelations.Models.Employee", b =>
+            modelBuilder.Entity("OneToOneToManyToManyRelations.OneToOne.Employee", b =>
                 {
                     b.Navigation("EmployeeAddress")
                         .IsRequired();

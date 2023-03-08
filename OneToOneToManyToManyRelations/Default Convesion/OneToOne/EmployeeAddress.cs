@@ -1,4 +1,4 @@
-﻿namespace OneToOneToManyToManyRelations.Models
+﻿namespace OneToOneToManyToManyRelations.OneToOne
 {
     public class EmployeeAddress
     {

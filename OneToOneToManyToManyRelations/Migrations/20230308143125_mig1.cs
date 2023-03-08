@@ -12,26 +12,12 @@ namespace OneToOneToManyToManyRelations.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Departments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    DepartmantName = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Departments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    EmployeeName = table.Column<string>(type: "text", nullable: false),
-                    DepartmentId = table.Column<int>(type: "integer", nullable: false)
+                    EmployeeName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,9 +54,6 @@ namespace OneToOneToManyToManyRelations.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Departments");
-
             migrationBuilder.DropTable(
                 name: "EmployeeAddresses");
 
